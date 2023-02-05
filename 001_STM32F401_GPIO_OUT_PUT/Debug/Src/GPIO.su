@@ -1,0 +1,2 @@
+../Src/GPIO.c:3:9:gpio_port_init	24	static
+../Src/GPIO.c:27:6:gpio_write_pin	24	static

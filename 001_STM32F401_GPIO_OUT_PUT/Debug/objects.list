@@ -1,0 +1,6 @@
+"./CMSIS/Src/system_stm32f4xx.o"
+"./Src/GPIO.o"
+"./Src/main.o"
+"./Src/syscalls.o"
+"./Src/sysmem.o"
+"./Startup/startup_stm32f401ccux.o"
