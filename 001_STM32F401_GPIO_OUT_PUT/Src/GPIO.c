@@ -38,5 +38,14 @@ void gpio_write_pin(GPIO_TypeDef *GPIO, uint32_t pin, Te_Pin_State state)
 
 Te_Pin_State gpio_read_pin(GPIO_TypeDef *GPIO, uint32_t pin)
 {
-	return (Te_Pin_State) REG_READ_BIT(GPIO->IDR, pin);
+	if (GPIO->IDR & pin)
+	{
+		return PIN_SET;
+
+	}
+	else
+	{
+		return PIN_RESET;
+	}
 }
+

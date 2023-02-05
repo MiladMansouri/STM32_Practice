@@ -47,6 +47,8 @@ int main(void)
 	 * */
 
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+
 	Ts_GPIO_Handel handel =
 	{ 0 };
 	handel.mode = GPIO_MODE_OUTPUT;
@@ -56,12 +58,24 @@ int main(void)
 	handel.pin = GPIO_PIN_13;
 	gpio_port_init(GPIOC, &handel);
 
+	handel.mode = GPIO_MODE_INPUT;
+	handel.output_mode = GPIO_OUTPUT_PP;
+	handel.speed = GPIO_SPEED_HIGH;
+	handel.pupdr = GPIO_PUPDR_PULL_UP;
+	handel.pin = GPIO_PIN_15;
+	gpio_port_init(GPIOA, &handel);
+	gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_RESET);
+
 	while (1)
 	{
-		gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_SET);
-		delay_ms(1000);
-		gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_RESET);
-		delay_ms(1000);
+		if (!gpio_read_pin(GPIOA, GPIO_PIN_15))
+		{
+			gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_SET);
+		}
+		else
+		{
+			gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_RESET);
+		}
 
 	}
 
