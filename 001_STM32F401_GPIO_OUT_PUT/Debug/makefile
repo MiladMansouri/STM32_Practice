@@ -49,34 +49,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := 001_STM32F401_GPIO_OUT_PUT
+BUILD_ARTIFACT_NAME := 001_STM32F401_GPIO
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-001_STM32F401_GPIO_OUT_PUT.elf \
+001_STM32F401_GPIO.elf \
 
 MAP_FILES += \
-001_STM32F401_GPIO_OUT_PUT.map \
+001_STM32F401_GPIO.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-001_STM32F401_GPIO_OUT_PUT.list \
+001_STM32F401_GPIO.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: 001_STM32F401_GPIO_OUT_PUT.elf secondary-outputs
+main-build: 001_STM32F401_GPIO.elf secondary-outputs
 
 # Tool invocations
-001_STM32F401_GPIO_OUT_PUT.elf 001_STM32F401_GPIO_OUT_PUT.map: $(OBJS) $(USER_OBJS) E:\Practical-Project\STM32_Workspase\001_STM32F401_GPIO_OUT_PUT\STM32F401CCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "001_STM32F401_GPIO_OUT_PUT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\Practical-Project\STM32_Workspase\001_STM32F401_GPIO_OUT_PUT\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001_STM32F401_GPIO_OUT_PUT.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+001_STM32F401_GPIO.elf 001_STM32F401_GPIO.map: $(OBJS) $(USER_OBJS) E:\Practical-Project\STM32_Workspase\001_STM32F401_GPIO_OUT_PUT\STM32F401CCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "001_STM32F401_GPIO.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\Practical-Project\STM32_Workspase\001_STM32F401_GPIO_OUT_PUT\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001_STM32F401_GPIO.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -85,14 +85,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-001_STM32F401_GPIO_OUT_PUT.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "001_STM32F401_GPIO_OUT_PUT.list"
+001_STM32F401_GPIO.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "001_STM32F401_GPIO.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) 001_STM32F401_GPIO_OUT_PUT.elf 001_STM32F401_GPIO_OUT_PUT.list 001_STM32F401_GPIO_OUT_PUT.map default.size.stdout
+	-$(RM) 001_STM32F401_GPIO.elf 001_STM32F401_GPIO.list 001_STM32F401_GPIO.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

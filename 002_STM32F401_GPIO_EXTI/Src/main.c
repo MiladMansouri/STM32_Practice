@@ -21,6 +21,7 @@
 #include "GPIO.h"
 
 static volatile uint32_t tick;
+static volatile uint8_t led = 0;
 void SysTick_Handler(void)
 {
 	tick++;
@@ -31,6 +32,17 @@ void delay_ms(uint32_t delay)
 	tick = 0;
 	while (tick < delay)
 		;
+}
+
+void EXTI15_10_IRQHandler(void)
+{
+	// check pending bit to sure EXIT15 Is triggered
+	if (EXTI->PR & EXTI_PR_PR15)
+	{
+		// clear pending bit (for clear pending bit it must be set by sw)
+		EXTI->PR |= EXTI_PR_PR15;
+		led = !led;
+	}
 }
 
 int main(void)
@@ -45,9 +57,13 @@ int main(void)
 	 * - SET NO PULL UP PULL DOWN RESISTOR
 	 * - USING ODR TO SET AND RESET PIN OR USING BSRR
 	 * */
-
+	/*****************************************/
+	/* Clock Enable */
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+	/*****************************************/
+	/* Config GPIOs : C13 LED , A15 External Input Interrupt */
 	Ts_GPIO_Handel handel =
 	{ 0 };
 	handel.mode = GPIO_MODE_OUTPUT;
@@ -56,26 +72,28 @@ int main(void)
 	handel.pupdr = GPIO_PUPDR_NO_PU_PD;
 	handel.pin = GPIO_PIN_13;
 	gpio_port_init(GPIOC, &handel);
-
+	/* Input Pull Up */
 	handel.mode = GPIO_MODE_INPUT;
-	handel.output_mode = GPIO_OUTPUT_PP;
+	handel.output_mode = 0;
 	handel.speed = GPIO_SPEED_HIGH;
 	handel.pupdr = GPIO_PUPDR_PULL_UP;
 	handel.pin = GPIO_PIN_15;
 	gpio_port_init(GPIOA, &handel);
-	gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_RESET);
+	/*****************************************/
+	// Config External interrupt PA15 Faling Edge
+	SYSCFG->EXTICR[3] &= ~(SYSCFG_EXTICR4_EXTI15_Msk);
+	SYSCFG->EXTICR[3] |= (SYSCFG_EXTICR4_EXTI15_PA);
+	EXTI->IMR |= EXTI_IMR_IM15; // Enable Interrupte (Interrupt request from line 15 is not masked)
+	EXTI->RTSR |= EXTI_RTSR_TR15; // Enable Rasing Edge
+	EXTI->FTSR &= ~(EXTI_FTSR_TR15_Msk); // Disable Faling Edge
+	/*****************************************/
+	// Config NVIC Enable Interrupt and Set Priority
+	NVIC_SetPriority(EXTI15_10_IRQn, 0x03);
+	NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 	while (1)
 	{
-		if (!gpio_read_pin(GPIOA, GPIO_PIN_15))
-		{
-			gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_SET);
-		}
-		else
-		{
-			gpio_write_pin(GPIOC, GPIO_PIN_13, PIN_RESET);
-		}
-
+		gpio_write_pin(GPIOC, GPIO_PIN_13, (Te_Pin_State) led);
 	}
 
 }
