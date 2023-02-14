@@ -1,0 +1,10 @@
+12:22:34 **** Incremental Build of configuration Debug for project 002_STM32F401_GPIO_EXTI ****
+make -j8 all 
+arm-none-eabi-size   002_STM32F401_GPIO_EXTI.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1648	     12	   1572	   3232	    ca0	002_STM32F401_GPIO_EXTI.elf
+Finished building: default.size.stdout
+ 
+
+12:22:35 Build Finished. 0 errors, 0 warnings. (took 516ms)
+

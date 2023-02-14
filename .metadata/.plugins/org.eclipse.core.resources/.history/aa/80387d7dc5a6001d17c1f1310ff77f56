@@ -1,0 +1,23 @@
+/*
+ * DeviceIO.h
+ *
+ *  Created on: Feb 7, 2023
+ *      Author: Mansouri.m
+ */
+
+#ifndef DEVICEIO_H_
+#define DEVICEIO_H_
+#include "DeviceIO.h"
+
+class DeviceIO
+{
+public:
+	DeviceIO();
+	virtual ~DeviceIO();
+	DeviceIO(const DeviceIO &other);
+	DeviceIO(DeviceIO &&other);
+	DeviceIO& operator=(const DeviceIO &other);
+	DeviceIO& operator=(DeviceIO &&other);
+};
+
+#endif /* DEVICEIO_H_ */

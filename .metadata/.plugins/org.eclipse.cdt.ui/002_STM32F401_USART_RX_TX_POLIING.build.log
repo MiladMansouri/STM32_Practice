@@ -1,0 +1,24 @@
+12:22:35 **** Incremental Build of configuration Debug for project 002_STM32F401_USART_RX_TX_POLIING ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F401xC -DSTM32F401CCUx -DSTM32 -DSTM32F4 -c -I../Inc -I"E:/Practical-Project/STM32_Workspase/002_STM32F401_USART_RX_TX_POLIING/CMSIS/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/GPIO.d" -MT"Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/GPIO.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F401xC -DSTM32F401CCUx -DSTM32 -DSTM32F4 -c -I../Inc -I"E:/Practical-Project/STM32_Workspase/002_STM32F401_USART_RX_TX_POLIING/CMSIS/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F401xC -DSTM32F401CCUx -DSTM32 -DSTM32F4 -c -I../Inc -I"E:/Practical-Project/STM32_Workspase/002_STM32F401_USART_RX_TX_POLIING/CMSIS/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F401xC -DSTM32F401CCUx -DSTM32 -DSTM32F4 -c -I../Inc -I"E:/Practical-Project/STM32_Workspase/002_STM32F401_USART_RX_TX_POLIING/CMSIS/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc "../CMSIS/Src/system_stm32f4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F401xC -DSTM32F401CCUx -DSTM32 -DSTM32F4 -c -I../Inc -I"E:/Practical-Project/STM32_Workspase/002_STM32F401_USART_RX_TX_POLIING/CMSIS/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"CMSIS/Src/system_stm32f4xx.d" -MT"CMSIS/Src/system_stm32f4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "CMSIS/Src/system_stm32f4xx.o"
+arm-none-eabi-g++ -o "002_STM32F401_USART_RX_TX_POLIING.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\Practical-Project\STM32_Workspase\002_STM32F401_USART_RX_TX_POLIING\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="002_STM32F401_USART_RX_TX_POLIING.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: 002_STM32F401_USART_RX_TX_POLIING.elf
+ 
+arm-none-eabi-size   002_STM32F401_USART_RX_TX_POLIING.elf 
+arm-none-eabi-objdump -h -S  002_STM32F401_USART_RX_TX_POLIING.elf  > "002_STM32F401_USART_RX_TX_POLIING.list"
+arm-none-eabi-objcopy  -O ihex  002_STM32F401_USART_RX_TX_POLIING.elf  "002_STM32F401_USART_RX_TX_POLIING.hex"
+   text	   data	    bss	    dec	    hex	filename
+   1648	     12	   1572	   3232	    ca0	002_STM32F401_USART_RX_TX_POLIING.elf
+Finished building: default.size.stdout
+ 
+Finished building: 002_STM32F401_USART_RX_TX_POLIING.list
+Finished building: 002_STM32F401_USART_RX_TX_POLIING.hex
+ 
+ 
+
+12:22:36 Build Finished. 0 errors, 0 warnings. (took 1s.512ms)
+

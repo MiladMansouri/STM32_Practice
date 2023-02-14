@@ -1,0 +1,17 @@
+13:39:27 **** Build of configuration Debug for project 001_STM32F401_GPIO_OUT_PUT ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F401xC -DSTM32F401CCUx -DSTM32 -DSTM32F4 -c -I../Inc -I"E:/Practical-Project/STM32_Workspase/001_STM32F401_GPIO_OUT_PUT/CMSIS/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-g++ -o "001_STM32F401_GPIO_OUT_PUT.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\Practical-Project\STM32_Workspase\001_STM32F401_GPIO_OUT_PUT\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001_STM32F401_GPIO_OUT_PUT.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: 001_STM32F401_GPIO_OUT_PUT.elf
+ 
+arm-none-eabi-size   001_STM32F401_GPIO_OUT_PUT.elf 
+arm-none-eabi-objdump -h -S  001_STM32F401_GPIO_OUT_PUT.elf  > "001_STM32F401_GPIO_OUT_PUT.list"
+   text	   data	    bss	    dec	    hex	filename
+   1500	     12	   1572	   3084	    c0c	001_STM32F401_GPIO_OUT_PUT.elf
+Finished building: default.size.stdout
+ 
+Finished building: 001_STM32F401_GPIO_OUT_PUT.list
+ 
+
+13:39:28 Build Finished. 0 errors, 0 warnings. (took 1s.413ms)
+

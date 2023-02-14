@@ -1,0 +1,44 @@
+/*
+ * DeviceIO.cpp
+ *
+ *  Created on: Feb 7, 2023
+ *      Author: Mansouri.m
+ */
+
+#include "DeviceIO.h"
+
+DeviceIO::DeviceIO()
+{
+	// TODO Auto-generated constructor stub
+
+}
+
+DeviceIO::~DeviceIO()
+{
+	// TODO Auto-generated destructor stub
+}
+
+DeviceIO::DeviceIO(const DeviceIO &other)
+{
+	// TODO Auto-generated constructor stub
+
+}
+
+DeviceIO::DeviceIO(DeviceIO &&other)
+{
+	// TODO Auto-generated constructor stub
+
+}
+
+DeviceIO& DeviceIO::operator=(const DeviceIO &other)
+{
+	// TODO Auto-generated method stub
+
+}
+
+DeviceIO& DeviceIO::operator=(DeviceIO &&other)
+{
+	// TODO Auto-generated method stub
+
+}
+
